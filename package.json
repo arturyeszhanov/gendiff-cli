@@ -22,5 +22,5 @@
   },
   "bin": {
   "gendiff": "./gendiff.js"
-  }
+}
 }
