@@ -1,6 +1,9 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/arturyeszhanov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/arturyeszhanov/frontend-project-46/actions)
 
+[![Node.js CI](https://github.com/arturyeszhanov/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/arturyeszhanov/frontend-project-46/actions)
+
+
 # Вычислитель отличий (gendiff)
 
 ## Описание
