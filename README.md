@@ -6,7 +6,6 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/639d3e76f1b8874c925d/test_coverage)](https://codeclimate.com/github/arturyeszhanov/frontend-project-46/test_coverage)
 
 
-
 # Вычислитель отличий (gendiff)
 
 ## Описание
