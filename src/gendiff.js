@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import parseFile from './src/parsers.js';
+import parseFile from './parsers.js';
 import _ from 'lodash';
 
 const program = new Command();
@@ -24,6 +24,8 @@ const genDiff = (data1, data2) => {
   return `{\n${result.join('\n')}\n}`;
 };
 
+export default genDiff;
+
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
@@ -38,4 +40,6 @@ program
     console.log(diff);
   });
 
-program.parse(process.argv);
+if (process.argv[1] && process.argv[1].endsWith('gendiff.js')) {
+  program.parse(process.argv);
+}
