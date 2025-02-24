@@ -2,15 +2,13 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "jest": {
-    "transform": {}
-  },
   "description": "[![Actions Status](https://github.com/arturyeszhanov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/arturyeszhanov/frontend-project-46/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "lint": "eslint .",
-    "test-coverage": "jest --coverage --coverageReporters=text-lcov | codeclimate-test-reporter"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test-coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=text-lcov | codeclimate-test-reporter"
+
   },
   "repository": {
     "type": "git",
