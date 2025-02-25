@@ -47,9 +47,9 @@ Options:
   -h, --help           output usage information
 ```
 
-### Пример использования
-
-#### Входные файлы:
+### Примеры использования
+#### Сравнение JSON файлов:
+##### Входные файлы:
 **file1.json**:
 ```json
 {
@@ -71,7 +71,40 @@ Options:
 
 #### Запуск
 ```sh
-node gendiff.js file1.json file2.json
+node bin/gendiff.js __fixtures__/file1.json __fixtures__/file2.json
+```
+
+#### Вывод
+```
+{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}
+```
+#### Сравнение YAML файлов:
+##### Входные файлы:
+**file1.yaml**:
+```yaml
+host: hexlet.io
+timeout: 50
+proxy: 123.234.53.22
+follow: false
+```
+
+**file2.yaml**:
+```yaml
+host: hexlet.io
+timeout: 20
+verbose: true
+```
+
+#### Запуск
+```sh
+node bin/gendiff.js __fixtures__/file1.yaml __fixtures__/file2.yaml
 ```
 
 #### Вывод
@@ -86,9 +119,10 @@ node gendiff.js file1.json file2.json
 }
 ```
 
-## Демонстрация работы
-Вы можете посмотреть запись работы утилиты на asciinema:
-[![asciicast](https://asciinema.org/a/gFY8GOZtIYOL2LvQY0NGP3FbS.svg)](https://asciinema.org/a/gFY8GOZtIYOL2LvQY0NGP3FbS)
 
-Результат вывода сравнения файлов:
-[![asciicast](https://asciinema.org/a/nD5TwtAR4PzsQpVLVkF44GpHn.svg)](https://asciinema.org/a/nD5TwtAR4PzsQpVLVkF44GpHn)
+## 📌 Демонстрация работы
+### Сравнение JSON-файлов
+[![asciicast](https://asciinema.org/a/hs3AXwK3YCqvQ6ODd0He9j75f.svg)](https://asciinema.org/a/hs3AXwK3YCqvQ6ODd0He9j75f)
+
+### Сравнение YAML-файлов
+[![asciicast](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx.svg)](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx)
