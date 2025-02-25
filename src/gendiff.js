@@ -2,24 +2,44 @@
 
 import { Command } from 'commander';
 import parseFile from './parsers.js';
+import formatStylish from './formatters/stylish.js';
 import _ from 'lodash';
 
-const program = new Command();
-
-const genDiff = (data1, data2) => {
+const buildDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
-  const result = keys.map((key) => {
-    if (!Object.hasOwn(data2, key)) return `  - ${key}: ${data1[key]}`;
-    if (!Object.hasOwn(data1, key)) return `  + ${key}: ${data2[key]}`;
-    if (data1[key] !== data2[key]) return `  - ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`;
-    return `    ${key}: ${data1[key]}`;
-  });
 
-  return `{\n${result.join('\n')}\n}`;
+  return keys.map((key) => {
+    if (!Object.hasOwn(data1, key)) {
+      return { key, type: 'added', value: data2[key] };
+    }
+    if (!Object.hasOwn(data2, key)) {
+      return { key, type: 'removed', value: data1[key] };
+    }
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return { key, type: 'nested', children: buildDiff(data1[key], data2[key]) };
+    }
+    if (!_.isEqual(data1[key], data2[key])) {
+      return { key, type: 'changed', oldValue: data1[key], newValue: data2[key] };
+    }
+    return { key, type: 'unchanged', value: data1[key] };
+  });
+};
+
+const formatters = {
+  stylish: formatStylish,
+};
+
+const genDiff = (filepath1, filepath2, format = 'stylish') => {
+  const data1 = parseFile(filepath1);
+  const data2 = parseFile(filepath2);
+  const diff = buildDiff(data1, data2);
+
+  return formatters[format](diff);
 };
 
 export default genDiff;
 
+const program = new Command();
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
@@ -27,12 +47,9 @@ program
   .option('-f, --format [type]', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    const data1 = parseFile(filepath1);
-    const data2 = parseFile(filepath2);
-
-    const diff = genDiff(data1, data2);
-    console.log(diff);
+    console.log(genDiff(filepath1, filepath2));
   });
 
-
-
+if (import.meta.url === `file://${process.argv[1]}`) {
+  program.parse();
+}
