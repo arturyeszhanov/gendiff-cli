@@ -126,3 +126,6 @@ node bin/gendiff.js __fixtures__/file1.yaml __fixtures__/file2.yaml
 
 ### Сравнение YAML-файлов
 [![asciicast](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx.svg)](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx)
+
+### Сравнение файлов JSON и YAML с вложенными структурами
+[![asciicast](https://asciinema.org/a/a8IkIsboae9Oxd8vxmYxE1aPr.svg)](https://asciinema.org/a/a8IkIsboae9Oxd8vxmYxE1aPr)
