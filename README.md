@@ -89,3 +89,6 @@ node gendiff.js file1.json file2.json
 ## Демонстрация работы
 Вы можете посмотреть запись работы утилиты на asciinema:
 [![asciicast](https://asciinema.org/a/gFY8GOZtIYOL2LvQY0NGP3FbS.svg)](https://asciinema.org/a/gFY8GOZtIYOL2LvQY0NGP3FbS)
+
+Результат вывода сравнения файлов:
+[![asciicast](https://asciinema.org/a/nD5TwtAR4PzsQpVLVkF44GpHn.svg)](https://asciinema.org/a/nD5TwtAR4PzsQpVLVkF44GpHn)
