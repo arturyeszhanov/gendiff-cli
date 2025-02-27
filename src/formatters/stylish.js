@@ -1,40 +1,44 @@
 import _ from 'lodash';
 
-const getIndent = (depth, spaces = 4, shift = 2) => ' '.repeat(depth * spaces - shift);
-const getBracketIndent = (depth, spaces = 4) => ' '.repeat((depth - 1) * spaces);
+const indentSize = 4; // 4 пробела для базового отступа
+const shiftSize = 2;  // Для `+` и `-` изменений
 
+// Возвращает отступ с учетом глубины и возможного смещения
+const getIndent = (depth, shift = 0) => ' '.repeat((depth - 1) * indentSize + shift);
+
+// Возвращает отступ перед закрывающей скобкой
+const getBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize);
+
+// Форматирует значение (если объект — рекурсивно)
 const formatValue = (value, depth) => {
-    if (!_.isObject(value) || value === null) {
-        return String(value);
-    }
+  if (!_.isPlainObject(value)) return String(value);
 
-    const indent = getIndent(depth + 1);
-    const bracketIndent = getBracketIndent(depth);
-    
-    const lines = Object.entries(value)
-        .map(([key, val]) => `${indent}  ${key}: ${formatValue(val, depth + 1)}`);
+  const indent = getIndent(depth + 1);
+  const bracketIndent = getBracketIndent(depth + 1);
 
-    return `{\n${lines.join('\n')}\n${bracketIndent}}`;
+  const lines = Object.entries(value)
+    .map(([key, val]) => `${indent}  ${key}: ${formatValue(val, depth + 1)}`);
+
+  return `{\n${lines.join('\n')}\n${bracketIndent}}`;
 };
 
+// Главная функция
 const formatStylish = (diff, depth = 1) => {
-  const indent = getIndent(depth);
+  const indent = getIndent(depth, shiftSize);
   const bracketIndent = getBracketIndent(depth);
 
-  const lines = diff.map(({ key, type, value, oldValue, newValue, children }) => {
-    switch (type) {
-      case 'added':
-        return `${indent}+ ${key}: ${formatValue(value, depth)}`;
-      case 'removed':
-        return `${indent}- ${key}: ${formatValue(value, depth)}`;
-      case 'changed':
-        return `${indent}- ${key}: ${formatValue(oldValue, depth)}\n${indent}+ ${key}: ${formatValue(newValue, depth)}`;
-      case 'nested':
-        return `${indent}  ${key}: ${formatStylish(children, depth + 1)}`;
-      default:
-        return `${indent}  ${key}: ${formatValue(value, depth)}`;
-    }
-  });
+  const formatters = {
+    added: ({ key, value }) => `${indent}+ ${key}: ${formatValue(value, depth)}`,
+    removed: ({ key, value }) => `${indent}- ${key}: ${formatValue(value, depth)}`,
+    changed: ({ key, oldValue, newValue }) => [
+      `${indent}- ${key}: ${formatValue(oldValue, depth)}`,
+      `${indent}+ ${key}: ${formatValue(newValue, depth)}`,
+    ].join('\n'),
+    nested: ({ key, children }) => `${indent}  ${key}: ${formatStylish(children, depth + 1)}`,
+    unchanged: ({ key, value }) => `${indent}  ${key}: ${formatValue(value, depth)}`,
+  };
+
+  const lines = diff.map((node) => formatters[node.type](node));
 
   return `{\n${lines.join('\n')}\n${bracketIndent}}`;
 };

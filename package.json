@@ -7,7 +7,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "test-coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=lcov && codeclimate-test-reporter < coverage/lcov.info"
+    "test-coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --coverageReporters=lcov && codeclimate-test-reporter < coverage/lcov.info",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "lodash": "^4.17.21"
   },
   "bin": {
-    "gendiff": "./gendiff.js"
+    "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

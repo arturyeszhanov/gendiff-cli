@@ -1,7 +1,12 @@
-import { Command } from 'commander';
-import genDiff from '../src/gendiff.js';
-import parseFile from '../src/parsers.js';
+#!/usr/bin/env node
 
+import { Command } from 'commander';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import genDiff from '../src/gendiff.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const program = new Command();
 
 program
@@ -10,10 +15,10 @@ program
   .version('1.0.0')
   .option('-f, --format [type]', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
-  .action((filepath1, filepath2, options) => {
-    const diff = genDiff(filepath1, filepath2, options.format);
-    console.log(diff);
+  .action((file1, file2, options) => {
+    const fullPath1 = path.resolve(__dirname, '../__fixtures__', file1);
+    const fullPath2 = path.resolve(__dirname, '../__fixtures__', file2);
+    console.log(genDiff(fullPath1, fullPath2, options.format));
   });
-  program.parse();
 
-export default program;
+program.parse();
