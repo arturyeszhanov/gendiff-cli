@@ -5,12 +5,13 @@ import yaml from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const parseFile = (filepath) => {
   if (typeof filepath !== 'string') {
     throw new Error(`Invalid filepath: expected a string, got ${typeof filepath}`);
   }
 
-  const absolutePath = path.resolve(__dirname, '../__fixtures__', filepath);
+  const absolutePath = path.resolve(__dirname, '/', filepath);
   if (!fs.existsSync(absolutePath)) {
     throw new Error(`File not found: ${absolutePath}`);
   }
