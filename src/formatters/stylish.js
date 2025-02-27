@@ -1,15 +1,12 @@
 import _ from 'lodash';
 
-const indentSize = 4; // 4 пробела для базового отступа
-const shiftSize = 2;  // Для `+` и `-` изменений
+const indentSize = 4;
+const shiftSize = 2;
 
-// Возвращает отступ с учетом глубины и возможного смещения
 const getIndent = (depth, shift = 0) => ' '.repeat((depth - 1) * indentSize + shift);
 
-// Возвращает отступ перед закрывающей скобкой
 const getBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize);
 
-// Форматирует значение (если объект — рекурсивно)
 const formatValue = (value, depth) => {
   if (!_.isPlainObject(value)) return String(value);
 
@@ -22,7 +19,6 @@ const formatValue = (value, depth) => {
   return `{\n${lines.join('\n')}\n${bracketIndent}}`;
 };
 
-// Главная функция
 const formatStylish = (diff, depth = 1) => {
   const indent = getIndent(depth, shiftSize);
   const bracketIndent = getBracketIndent(depth);
