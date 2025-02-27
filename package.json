@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "[![Actions Status](https://github.com/arturyeszhanov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/arturyeszhanov/frontend-project-46/actions)",
-  "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
