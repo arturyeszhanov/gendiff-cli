@@ -16,8 +16,8 @@ program
   .option('-f, --format [type]', 'output format', 'stylish')
   .arguments('<filepath1> <filepath2>')
   .action((file1, file2, options) => {
-    const fullPath1 = path.resolve(__dirname, '../__fixtures__', file1);
-    const fullPath2 = path.resolve(__dirname, '../__fixtures__', file2);
+    const fullPath1 = path.resolve(__dirname, '../', file1);
+    const fullPath2 = path.resolve(__dirname, '../', file2);
     console.log(genDiff(fullPath1, fullPath2, options.format));
   });
 
