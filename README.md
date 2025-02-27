@@ -25,7 +25,7 @@
    ```
 3. Сделайте файл `gendiff.js` исполняемым:
    ```sh
-   chmod +x gendiff.js
+   chmod +x src/gendiff.js
    ```
 
 ## Использование
@@ -33,7 +33,7 @@
 ### Справка
 Для получения справки о доступных командах и опциях запустите:
 ```sh
-node gendiff.js -h
+gendiff -h
 ```
 Вывод:
 ```
@@ -47,85 +47,18 @@ Options:
   -h, --help           output usage information
 ```
 
-### Примеры использования
-#### Сравнение JSON файлов:
-##### Входные файлы:
-**file1.json**:
-```json
-{
-  "host": "hexlet.io",
-  "timeout": 50,
-  "proxy": "123.234.53.22",
-  "follow": false
-}
-```
-
-**file2.json**:
-```json
-{
-  "timeout": 20,
-  "verbose": true,
-  "host": "hexlet.io"
-}
-```
-
-#### Запуск
-```sh
-node bin/gendiff.js __fixtures__/file1.json __fixtures__/file2.json
-```
-
-#### Вывод
-```
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-```
-#### Сравнение YAML файлов:
-##### Входные файлы:
-**file1.yaml**:
-```yaml
-host: hexlet.io
-timeout: 50
-proxy: 123.234.53.22
-follow: false
-```
-
-**file2.yaml**:
-```yaml
-host: hexlet.io
-timeout: 20
-verbose: true
-```
-
-#### Запуск
-```sh
-node bin/gendiff.js __fixtures__/file1.yaml __fixtures__/file2.yaml
-```
-
-#### Вывод
-```
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-```
-
-
 ## 📌 Демонстрация работы
-### Сравнение JSON-файлов
-[![asciicast](https://asciinema.org/a/hs3AXwK3YCqvQ6ODd0He9j75f.svg)](https://asciinema.org/a/hs3AXwK3YCqvQ6ODd0He9j75f)
+### Сравнение плоских файлов (JSON)
+[![asciicast](https://asciinema.org/a/gKDzFxQ2vJJUlSNerhrglQGGz.svg)](https://asciinema.org/a/gKDzFxQ2vJJUlSNerhrglQGGz)
 
-### Сравнение YAML-файлов
-[![asciicast](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx.svg)](https://asciinema.org/a/A8ncPgxxYmahemaGCdG1WkRtx)
+### Сравнение плоских файлов (YAML)
+[![asciicast](https://asciinema.org/a/1WoQKVL6P8eGfUd6x2qBE1qHg.svg)](https://asciinema.org/a/1WoQKVL6P8eGfUd6x2qBE1qHg)
 
-### Сравнение файлов JSON и YAML с вложенными структурами
-[![asciicast](https://asciinema.org/a/a8IkIsboae9Oxd8vxmYxE1aPr.svg)](https://asciinema.org/a/a8IkIsboae9Oxd8vxmYxE1aPr)
+### Рекурсивное сравнение
+[![asciicast](https://asciinema.org/a/fJFvbT5qTOSvHtyhJU8DfoKGD.svg)](https://asciinema.org/a/fJFvbT5qTOSvHtyhJU8DfoKGD)
+
+### Плоский формат
+[![asciicast](https://asciinema.org/a/cFyKdNqiov6qmVBu9ly1J12rg.svg)](https://asciinema.org/a/cFyKdNqiov6qmVBu9ly1J12rg)
+
+### Вывод в JSON
+[![asciicast](https://asciinema.org/a/RG5TZBReDD3Wpz1cx69UV0ntd.svg)](https://asciinema.org/a/RG5TZBReDD3Wpz1cx69UV0ntd)
