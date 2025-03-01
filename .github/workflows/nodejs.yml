@@ -37,11 +37,17 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Install Code Climate Test Reporter
-        run: npm install -g codeclimate-test-reporter
+      - name: Download Code Climate Test Reporter
+        run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -o cc-test-reporter
 
-      - name: Run coverage tests
-        run: npm run test-coverage
+      - name: Set permissions for Code Climate Test Reporter
+        run: chmod +x cc-test-reporter
+
+      - name: Run tests with coverage
+        run: |
+          ./cc-test-reporter before-build
+          npm run test-coverage
+          ./cc-test-reporter after-build --exit-code $?
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           CODECLIMATE_REPO_TOKEN: ${{ secrets.CODECLIMATE_REPO_TOKEN }}
