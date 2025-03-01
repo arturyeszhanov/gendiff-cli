@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { readFileSync } from 'fs';
 import { test, expect } from '@jest/globals';
-import genDiff from '../src/gendiff.js';
+import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +16,7 @@ test('gendiff JSON files', () => {
     expect(result).toEqual(expected.trim());
 });
 
-test('gendiff YAML files', () => {
+test('gendiff cli yml', () => {
     const file1 = getFixturePath('file1.yaml');
     const file2 = getFixturePath('file2.yaml');
     const expected = readFileSync(getFixturePath('expected_result_plain.txt'), 'utf-8');
