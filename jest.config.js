@@ -1,12 +1,6 @@
 export default {
-    transform: {},
-    globals: {
-      'ts-jest': {
-        useESM: true,
-      },
-    },
-    moduleNameMapper: {
-      '^(\\.{1,2}/.*)\\.js$': '$1',
-    },
+    collectCoverage: true,
+    coverageDirectory: "coverage",
+    coverageReporters: ["lcov", "text-summary"],
   };
   
