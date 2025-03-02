@@ -30,8 +30,7 @@
     "gendiff": "./bin/gendiff.js"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "eslint": "^9.21.0",
+    "eslint": "^8.56.0",
     "globals": "^16.0.0",
     "jest": "^29.7.0"
   }
