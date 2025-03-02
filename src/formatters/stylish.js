@@ -29,11 +29,15 @@ const formatValue = (value, depth) => {
   }
 
   if (typeof value === 'string') {
-    return value; // Убрали кавычки
+    return value; // Уберите кавычки для строк
   }
 
   if (value === null) {
-    return 'null';
+    return 'null'; // Возвращайте 'null' для null
+  }
+
+  if (value === '') {
+    return ''; // Возвращайте пустую строку без кавычек и лишних пробелов
   }
 
   if (typeof value === 'boolean') {
