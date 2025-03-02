@@ -147,5 +147,10 @@
         "newValue": "bar"
       }
     ]
+  },
+  {
+    "key": "language",
+    "type": "added",
+    "value": "js"
   }
 ]

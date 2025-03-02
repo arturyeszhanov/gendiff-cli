@@ -56,4 +56,5 @@
       - type: bas
       + type: bar
     }
+  + language: js
 }

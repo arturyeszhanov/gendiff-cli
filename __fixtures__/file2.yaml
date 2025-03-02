@@ -28,3 +28,4 @@ group4:
     bar: 0
   someKey: true
   type: bar
+language: js
