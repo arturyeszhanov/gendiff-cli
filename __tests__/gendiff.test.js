@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { readFileSync } from 'fs';
-import { beforeAll, test, expect } from '@jest/globals';
+import { beforeEach, test, expect, describe } from '@jest/globals';
 import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,28 +12,52 @@ let expectedPlain;
 let expectedJson;
 let expectedStylish;
 
-beforeAll(() => {
+beforeEach(() => {
   expectedPlain = readFileSync(getFixturePath('expected_result_plain.txt'), 'utf-8').trim();
   expectedJson = readFileSync(getFixturePath('expected_result_json.txt'), 'utf-8').trim();
   expectedStylish = readFileSync(getFixturePath('expected_result_stylish.txt'), 'utf-8').trim();
 });
 
-test('json', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
+describe('gendiff', () => {
+  describe('json files', () => {
+    const filepath1 = getFixturePath('file1.json');
+    const filepath2 = getFixturePath('file2.json');
 
-  expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJson);
-  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
-  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
-  expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish); // default формат
-});
+    test('json format', () => {
+      expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJson);
+    });
 
-test('yaml', () => {
-  const filepath1 = getFixturePath('file1.yaml');
-  const filepath2 = getFixturePath('file2.yaml');
+    test('plain format', () => {
+      expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
+    });
 
-  expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJson);
-  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
-  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
-  expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish); // default формат
+    test('stylish format', () => {
+      expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
+    });
+
+    test('default format', () => {
+      expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish);
+    });
+  });
+
+  describe('yaml files', () => {
+    const filepath1 = getFixturePath('file1.yaml');
+    const filepath2 = getFixturePath('file2.yaml');
+
+    test('json format', () => {
+      expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJson);
+    });
+
+    test('plain format', () => {
+      expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain);
+    });
+
+    test('stylish format', () => {
+      expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish);
+    });
+
+    test('default format', () => {
+      expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish);
+    });
+  });
 });
