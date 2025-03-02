@@ -4,11 +4,6 @@
     "type": "nested",
     "children": [
       {
-        "key": "follow",
-        "type": "added",
-        "value": false
-      },
-      {
         "key": "setting1",
         "type": "unchanged",
         "value": "Value 1"
@@ -38,31 +33,14 @@
       },
       {
         "key": "setting6",
-        "type": "nested",
-        "children": [
-          {
-            "key": "doge",
-            "type": "nested",
-            "children": [
-              {
-                "key": "wow",
-                "type": "changed",
-                "oldValue": "",
-                "newValue": "so much"
-              }
-            ]
+        "type": "added",
+        "value": {
+          "doge": {
+            "wow": "so much"
           },
-          {
-            "key": "key",
-            "type": "unchanged",
-            "value": "value"
-          },
-          {
-            "key": "ops",
-            "type": "added",
-            "value": "vops"
-          }
-        ]
+          "key": "value",
+          "ops": "vops"
+        }
       }
     ]
   },
@@ -112,5 +90,62 @@
       },
       "fee": 100500
     }
+  },
+  {
+    "key": "group4",
+    "type": "nested",
+    "children": [
+      {
+        "key": "default",
+        "type": "changed",
+        "oldValue": null,
+        "newValue": ""
+      },
+      {
+        "key": "foo",
+        "type": "changed",
+        "oldValue": 0,
+        "newValue": null
+      },
+      {
+        "key": "isNested",
+        "type": "changed",
+        "oldValue": false,
+        "newValue": "none"
+      },
+      {
+        "key": "key",
+        "type": "added",
+        "value": false
+      },
+      {
+        "key": "nest",
+        "type": "nested",
+        "children": [
+          {
+            "key": "bar",
+            "type": "changed",
+            "oldValue": "",
+            "newValue": 0
+          },
+          {
+            "key": "isNested",
+            "type": "removed",
+            "value": true
+          }
+        ]
+      },
+      {
+        "key": "someKey",
+        "type": "added",
+        "value": true
+      },
+      {
+        "key": "type",
+        "type": "changed",
+        "oldValue": "bas",
+        "newValue": "bar"
+      }
+    ]
   }
 ]
