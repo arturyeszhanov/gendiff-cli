@@ -1,22 +1,46 @@
 import _ from 'lodash';
 
-const indentSize = 4;
-const shiftSize = 2;
+const indentSize = 4; // Убедитесь, что это значение соответствует ожидаемым отступам
+const shiftSize = 2;  // Убедитесь, что это значение корректно
 
 const getIndent = (depth, shift = 0) => ' '.repeat((depth - 1) * indentSize + shift);
 
 const getBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize);
 
 const formatValue = (value, depth) => {
-  if (!_.isPlainObject(value)) return String(value);
+  if (_.isPlainObject(value)) {
+    const indent = getIndent(depth + 1);
+    const bracketIndent = getBracketIndent(depth + 1);
 
-  const indent = getIndent(depth + 1);
-  const bracketIndent = getBracketIndent(depth + 1);
+    const lines = Object.entries(value)
+      .map(([key, val]) => `${indent}  ${key}: ${formatValue(val, depth + 1)}`);
 
-  const lines = Object.entries(value)
-    .map(([key, val]) => `${indent}  ${key}: ${formatValue(val, depth + 1)}`);
+    return `{\n${lines.join('\n')}\n${bracketIndent}}`;
+  }
 
-  return `{\n${lines.join('\n')}\n${bracketIndent}}`;
+  if (Array.isArray(value)) {
+    const indent = getIndent(depth + 1);
+    const bracketIndent = getBracketIndent(depth + 1);
+
+    const lines = value
+      .map((item) => `${indent}${formatValue(item, depth + 1)}`);
+
+    return `[\n${lines.join('\n')}\n${bracketIndent}]`;
+  }
+
+  if (typeof value === 'string') {
+    return value; // Убрали кавычки
+  }
+
+  if (value === null) {
+    return 'null';
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 'true' : 'false';
+  }
+
+  return String(value);
 };
 
 const formatStylish = (diff, depth = 1) => {
