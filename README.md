@@ -55,10 +55,10 @@ Options:
 [![asciicast](https://asciinema.org/a/1WoQKVL6P8eGfUd6x2qBE1qHg.svg)](https://asciinema.org/a/1WoQKVL6P8eGfUd6x2qBE1qHg)
 
 ### Рекурсивное сравнение
-[![asciicast](https://asciinema.org/a/fJFvbT5qTOSvHtyhJU8DfoKGD.svg)](https://asciinema.org/a/fJFvbT5qTOSvHtyhJU8DfoKGD)
+[![asciicast](https://asciinema.org/a/o6G7FrV5lkBWYLcLI5ZDbuvCc.svg)](https://asciinema.org/a/o6G7FrV5lkBWYLcLI5ZDbuvCc)
 
 ### Плоский формат
-[![asciicast](https://asciinema.org/a/cFyKdNqiov6qmVBu9ly1J12rg.svg)](https://asciinema.org/a/cFyKdNqiov6qmVBu9ly1J12rg)
+[![asciicast](https://asciinema.org/a/k8FFT75GcCd9xfD2N3sOm5l4S.svg)](https://asciinema.org/a/k8FFT75GcCd9xfD2N3sOm5l4S)
 
 ### Вывод в JSON
-[![asciicast](https://asciinema.org/a/RG5TZBReDD3Wpz1cx69UV0ntd.svg)](https://asciinema.org/a/RG5TZBReDD3Wpz1cx69UV0ntd)
+[![asciicast](https://asciinema.org/a/bLaTulvpcdXLj0406hnuSJpjY.svg)](https://asciinema.org/a/bLaTulvpcdXLj0406hnuSJpjY)
