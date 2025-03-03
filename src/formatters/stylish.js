@@ -33,21 +33,21 @@ const formatStylish = (diff, depth = 1) => {
     } = node;
 
     switch (type) {
-    case 'added':
-      return `${indent}  + ${key}: ${formatValue(value, depth + 1)}`;
-    case 'removed':
-      return `${indent}  - ${key}: ${formatValue(value, depth + 1)}`;
-    case 'unchanged':
-      return `${indent}    ${key}: ${formatValue(value, depth + 1)}`;
-    case 'changed':
-      return [
-        `${indent}  - ${key}: ${formatValue(oldValue, depth + 1)}`,
-        `${indent}  + ${key}: ${formatValue(newValue, depth + 1)}`,
-      ].join('\n');
-    case 'nested':
-      return `${indent}    ${key}: ${formatStylish(children, depth + 1)}`;
-    default:
-      throw new Error(`Unknown type: ${type}`);
+      case 'added':
+        return `${indent}  + ${key}: ${formatValue(value, depth + 1)}`;
+      case 'removed':
+        return `${indent}  - ${key}: ${formatValue(value, depth + 1)}`;
+      case 'unchanged':
+        return `${indent}    ${key}: ${formatValue(value, depth + 1)}`;
+      case 'changed':
+        return [
+          `${indent}  - ${key}: ${formatValue(oldValue, depth + 1)}`,
+          `${indent}  + ${key}: ${formatValue(newValue, depth + 1)}`,
+        ].join('\n');
+      case 'nested':
+        return `${indent}    ${key}: ${formatStylish(children, depth + 1)}`;
+      default:
+        throw new Error(`Unknown type: ${type}`);
     }
   });
 
