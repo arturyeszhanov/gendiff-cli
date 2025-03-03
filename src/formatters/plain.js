@@ -18,16 +18,16 @@ const formatPlain = (diff, path = '') => {
       const property = path ? `${path}.${key}` : key;
 
       switch (type) {
-      case 'added':
-        return `Property '${property}' was added with value: ${formatValue(value)}`;
-      case 'removed':
-        return `Property '${property}' was removed`;
-      case 'changed':
-        return `Property '${property}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`;
-      case 'nested':
-        return formatPlain(children, property);
-      default:
-        return [];
+        case 'added':
+          return `Property '${property}' was added with value: ${formatValue(value)}`;
+        case 'removed':
+          return `Property '${property}' was removed`;
+        case 'changed':
+          return `Property '${property}' was updated. From ${formatValue(oldValue)} to ${formatValue(newValue)}`;
+        case 'nested':
+          return formatPlain(children, property);
+        default:
+          return [];
       }
     });
 
