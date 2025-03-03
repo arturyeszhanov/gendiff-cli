@@ -1,19 +1,23 @@
 {
     common: {
+      + follow: false
         setting1: Value 1
       - setting2: 200
       - setting3: true
-      + setting3: null
+      + setting3: {
+            key: value
+        }
       + setting4: blah blah
       + setting5: {
             key5: value5
         }
-      + setting6: {
+        setting6: {
             doge: {
-                wow: so much
+              - wow: too much
+              + wow: so much
             }
             key: value
-            ops: vops
+          + ops: vops
         }
     }
     group1: {
@@ -56,5 +60,5 @@
       - type: bas
       + type: bar
     }
-  + language: js
+    language: js
 }
