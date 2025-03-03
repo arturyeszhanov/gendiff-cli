@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const indentSize = 4; // 4 пробела на уровень
 const shiftSize = 2;  // Смещение влево для спецсимволов
 
