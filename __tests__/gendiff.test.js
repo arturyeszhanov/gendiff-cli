@@ -1,8 +1,6 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { readFileSync } from 'fs';
-
-import { beforeEach, test, expect, describe } from '@jest/globals';
 import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,15 +8,9 @@ const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
-let expectedPlain;
-let expectedJson;
-let expectedStylish;
-
-beforeEach(() => {
-  expectedPlain = readFileSync(getFixturePath('expected_result_plain.txt'), 'utf-8').trim();
-  expectedJson = readFileSync(getFixturePath('expected_result_json.txt'), 'utf-8').trim();
-  expectedStylish = readFileSync(getFixturePath('expected_result_stylish.txt'), 'utf-8').trim();
-});
+const expectedPlain = readFileSync(getFixturePath('expected_result_plain.txt'), 'utf-8').trim();
+const expectedJson = readFileSync(getFixturePath('expected_result_json.txt'), 'utf-8').trim();
+const expectedStylish = readFileSync(getFixturePath('expected_result_stylish.txt'), 'utf-8').trim();
 
 describe('gendiff', () => {
   describe('json files', () => {

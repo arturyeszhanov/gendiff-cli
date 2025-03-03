@@ -7,7 +7,7 @@ const formatters = {
   plain: formatPlain,
   json: formatJson,
 };
- 
+
 export default (diff, format) => {
   if (!formatters[format]) {
     throw new Error(`Unknown format: ${format}`);

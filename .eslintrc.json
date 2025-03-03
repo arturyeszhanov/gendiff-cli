@@ -5,9 +5,21 @@
     "jest": true
   },
   "extends": "eslint:recommended",
+  "plugins": ["fp"],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }],
+    "no-trailing-spaces": "error",
+    "indent": ["error", 2],
+    "implicit-arrow-linebreak": ["error", "beside"],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-shadow": "error",
+
+    // fp-plugin rules
+    "fp/no-let": "error",
+    "fp/no-mutation": "error"
+  }
 }
